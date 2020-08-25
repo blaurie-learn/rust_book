@@ -1,0 +1,69 @@
+Cargo has two main profiles:
+	dev		- used when you run "cargo build"
+	release	- uses when you run "cargo build --release"
+
+
+Cargo has default settings that is uses for the profiles, but you can modify those by updating sections of your cargo.toml:
+
+[profile.dev]
+opt-level = 0
+
+[profile.release]
+opt-level = 3
+
+
+
+Comment code with 2 slashes //
+Documentation comments use 3 slashes ///
+	-place documentation comments just before the item they are documenting
+
+/// Adds one to the number given.
+///
+/// # Examples
+///
+/// ```
+/// let arg = 5;
+/// let answer = my_crate::add_one(arg);
+///
+/// assert_eq!(6, answer);
+/// ```
+pub fn add_one(x: i32) -> i32 {
+    x + 1
+}
+
+
+You can generate HTML documentation by using "cargo doc".
+
+Common sections (denoted with # above) for documentation are:
+	-Panics -- The scenarios that cause a panic
+	-Errors -- If a Result returns, describes the kinds of errors that might occur and why
+	-Safety -- Explaining why a function is unsafe to call
+
+For the code examples (surrounded by ''' ... '''), there is a good benefit: running "cargo test" will also run your code examples!
+
+
+//! comments describe the entire crate
+
+
+make use of "pub use" in your crate to export a cleaner API for your users as applicable.
+
+Set up a crates.io account to be able to publish crates. I don't plan on doing this for some time. I'll revisit
+this later.
+
+
+
+!!!!!WORKSPACES!!!!!
+Cargo also offers workspaces for those larger projects. A workspace is a set of packages that share the same cargo.lock and output directory
+Again, I'll most likely cover off "workspaces" as independant repositories for a variety of reasons. I'll revisit
+this another time should I ever want this.
+
+
+
+
+!!!!Installing binaries from cargo!!!!!!
+"cargo install" lets you install and use binary crates locally. 
+
+
+!!!Extending cargo!!!!
+you can extend cargo with custom subcommands. If a binary in your $PATH is named cargo-something, you can run it as if it was a cargo command like "cargo something"
+These custom commands are also listed with "cargo --list"
